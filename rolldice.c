@@ -1,11 +1,11 @@
 /**
- * rolldice.c - v1.10 - 25 Nov 2001
- * (c) Stevie Strickland, 1999-2001
+ * rolldice.c - v1.11 - 01 Feb 2010
+ * (c) Stevie Strickland, 1999-2012
  * 
  * This program has been placed under the GPL.  Any bugfixes or enhancements
  * will be greatly appreciated :)
  *
- * Stevie Strickland - sstrickl@cc.gatech.edu
+ * Stevie Strickland - sstrickl@ccs.neu.edu
  */
 
 #include "rolldice.h"

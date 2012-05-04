@@ -1,6 +1,6 @@
 /*
  * main.c - v1.11 - 01 Feb 2010
- * (c) Stevie Strickland, 1999-2010
+ * (c) Stevie Strickland, 1999-2012
  *
  * This program has been placed under the GPL.  Any bugfixes or enhancements
  * will be greatly appreciated :)
@@ -12,7 +12,7 @@
 
 /* The version number :) */
 static const int MAJOR_VERSION = 1;
-static const int MINOR_VERSION = 10;
+static const int MINOR_VERSION = 11;
 
 /* The long options for this program in an struct option array */
 struct option long_opts[] = {{"help", 0, NULL, 'h'},

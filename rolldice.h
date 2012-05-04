@@ -1,6 +1,6 @@
 /*
  * rolldice.h - v1.11 - 01 Feb 2010
- * (c) Stevie Strickland, 1999-2010
+ * (c) Stevie Strickland, 1999-2012
  *
  * This program has been placed under the GPL.  Any bugfixes or enhancements
  * will be greatly appreciated :)
