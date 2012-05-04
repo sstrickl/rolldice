@@ -1,0 +1,82 @@
+rolldice is just a simple program that rolls an amount of virtual dice of
+any size.  Well, technically, all the attributes of the dice can't exceed
+MAXSHORT, but I think it suffices for any normal FRPG.
+
+rolldice is a simple program, trying to uphold the UNIX philosophy of doing
+one thing, and doing that thing well.  However, this is not a claim that
+rolldice cannot be improved,  only that I am satisfied with it, as of right 
+now... of course, any improvements will be accepted gladly!
+
+1999.1.27
+
+I've had a request to add /dev/(u)random as random number input, and so 
+I've added the capability to use the random number devices as random input.
+The -u option gives you /dev/urandom, and the -r /dev/random.
+
+1999.2.12
+
+I know I've been a little late in adding some new features, and I apologize,
+but I'm sure you understand, college and all... anyway, there are two new
+features in this version of rolldice: A default for the number of dice to
+roll (so that strings like "d6" are possible now), and the ability to use
+"d%" as a percentage roll (rolls d100).  You can also use strings like
+"#d%" to roll # percentage dice at once.
+
+1999.3.10
+
+New in this release is the ability to print out each separate die roll.
+When using this feature, you get the following output:
+
+[sstrickl@midkemia]:~$ rolldice -s 3d6
+Roll #1: 2 4 2 = 8
+[sstrickl@midkemia]:~$ rolldice -s 2x3d6
+Roll #1: 5 2 6 = 13
+Roll #2: 1 6 2 = 9
+
+Easy?  I thought so! :)
+
+1999.3.27
+
+I still haven't put in the option to allow multiple dice strings on the 
+command line.  However, I *have* added the ability to drop a number of
+lowest die rolls.  This is for all those other methods of rolling characters
+under AD&D, and I'm sure other gaming systems use this sometimes ;)
+
+Also, /dev/urandom has been made the default random number generator, and
+the use of rand() has been dropped.  If you wish this method to be added
+back to rolldice, just contact me and I'll do so.
+
+1999.3.28
+
+I made the parser code much cleaner... this won't really affect the use of
+the program, except now you can kinda shuffle sections around.  They will
+still be resolved in the same order as before, however, so:
+
+[sstrickl@midkemia]:~$ rolldice -s 3d6-1*10
+
+results in:
+
+Roll #1: (3 5 2) * 10 - 1 = 99
+
+not:
+
+Roll #1: ((3 5 2) - 1) * 10 = 90
+
+It's not quite that smart, sadly.
+
+And also, finally, at long last, I've added the ability to use multiple dice
+strings!  Woohoo!  So this means that unless I find or am asked to add a new
+method to the dice string itself, this might be the last release of diceroll,
+unless I actually do rewrite it to make it neater, find a cleaner parser
+implementation, or just get bored and decide to add something else...
+
+2010.2.1
+
+Changing the URL/email at the bottom of this file, both of which are outdated
+since I left Georgia Tech.
+
+2012.5.4
+
+Cleaning up this README a bit (or destroying history, however you want to
+look at it) to get it ready for posting at Github.  Maybe one day I'll come
+back to it and clean it up as much as it needs, but I'm not optimistic.

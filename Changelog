@@ -1,0 +1,53 @@
+v1.11 - 01 Feb 2010
+  - Only updating URLs/email addresses.  No bugfixes in this revision,
+    though I'll get around to soon.
+
+v1.10 - 25 Nov 2001
+  - Forgot to add a couple of entries to the changelogs, I see.  Added them
+    back in.
+  - Truthfully, eventually I should rewrite this code completely, as I did
+    originally write it before I really knew how one should write code like
+    this.  Perhaps over the winter break.
+  - This version fixes the problem of urandom always being opened, thanks
+    to initializing the (u)random file before reading in the command line
+    options.  Fixed that, plus replaced my option parsing code with a use
+    of getopt_long().
+
+v1.9 - 10 Mar 2001
+  - Never checked result of parse_string for unsuccessful parses.  Fixed.
+
+v1.8 - 17 Oct 1999
+  - Segfaulted when one didn't specify how many dice to roll (should default
+    to one).  Fixed.
+
+v1.7 - 28 Mar 1999
+  - Changed dice string parser code, now more to my liking :)
+  - Added ability to use multiple dice strings
+
+v1.6 - 27 Mar 1999
+  - Added ability to drop a number of lowest die rolls and made reading
+    from /dev/urandom the default.  In fact, there is no longer a method
+    that uses the rand() function.  If adding this feature back is needed,
+    then just contact me and I'll work it back in.
+
+v1.5 - 10 Mar 1999
+  - Added ability to print out each individual die roll and added the long
+    version of each of the options
+
+v1.4 - 12 Feb 1999
+  - Added ability to use "d#" type constructions and "d%" for percentages
+
+v1.3 - 27 Jan 1999
+  - Fixed documentation, both in getting rid of childish flames and in
+    correcting the dates in the changelog (and anywhere else they might
+    be wrong :)
+
+v1.2 - 27 Jan 1999
+  - added /dev/(u)random code
+
+v1.1 - 20 Jan 1999
+  - Fixed bug involving overflowing and underflowingi because of
+    too large or negative dice attributes
+
+v1.0 - 19 Jan 1999
+  - Released rolldice

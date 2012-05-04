@@ -1,0 +1,101 @@
+.\" Man file for rolldice(6) - v1.11 - 01 Feb 2010
+.\" (c) Stevie Strickland, 1999-2010
+.\"
+.TH ROLLDICE 6 "01 Feb 2010" Linux
+.SH NAME
+rolldice \- rolls virtual dice
+.SH SYNOPSIS
+.B rolldice [
+.I options
+.B ]
+.I "dice_string"
+.I "dice_string"
+.I ...
+.SH DESCRIPTION
+.B rolldice
+rolls virtual dice.  The dice strings passed on the command line contain
+information on the dice to roll in a format comparable to the format used in
+fantasy role playing games.
+.SH OPTIONS
+.RS
+.IP -h,--help
+returns the usage of diceroll
+.IP -v,--version
+returns the version of diceroll 
+.IP -r,--random
+uses /dev/random for random number generating
+.IP -u,--urandom
+uses /dev/urandom for random number generating (default)
+.IP -s,--separate
+prints out the result of each individual die separately, as well as the
+operations and totals 
+.RE
+.SH "DICE STRING FORMAT" 
+The dice string uses the following format:
+.RS
+.IP {#x}{#}d[#|%]{*#}{+/-#}{s#}
+.RE
+.P
+The dice string doesn't have to be in the format that I outlined above,
+but this is the nicest order for me.  It will try to parse any different
+string containing the same sections in the best way it can, and will
+throw out anything that isn't one of the sections below.
+.P Now, to break this format down section by section:
+.RS
+.IP {#}d[#|%]
+This is the only required part of the string, and now really isn't even
+required, as it defaults to 1d6 if not found.  The first number is the
+number of dice to roll, and the second number is the number of sides the
+dice have.  The numbers rolled on each die are then added up and given
+as the result.  Hence 3d6 means "roll three six-sided dice, add them 
+together and return the result".  If the first number is left out, then
+the number of dice defaults to 1.  If the second number is not a number,
+but a percentage sign, then the number of sides becomes 100 (for a
+percentage roll).
+.IP {#x}
+This number tells how many times to roll.  For example, if you want to roll 3
+6-sided dice 6 times, you would say 6x3d6.  This would return six numbers,
+corresponding to the six different rolls.
+.IP {*#}
+This number tells how many times to multiply the result of each roll.
+3d6*100 would return a number in the range of 300-1800, since 3-18 is the
+range resulting from 3d6, which is then multipled by 100.
+.IP {+/-#}
+This number is the modifier to be added or subtracted, depending on the sign,
+from each roll.  1d4+1 would result in a range from 2-5 (1-4 for the die, plus
+1).  This step is handled *after* the multiplication modifier.
+.IP {s#}
+This number tells the program to drop the # lowest dice rolls.  This step is
+handled *before* the multiplication modifier.
+.RE
+.P Any combination of the optional parts of the string may be used, but only
+in the order show above.  For an extreme example, "3x4d6*5+1s2" would roll 
+four six-sided dice, drop the lowest two, multiply the result by 5, add 1 to 
+that, and repeat the process two more times, for a total of three results.
+.SH DIAGNOSTICS
+The following error messages may appear on STDERR:
+
+Failure in getting dice attributes
+.RS 
+Either memory could not be allocated while parsing the string passed to the
+.B rolldice
+program or an invalid dice string was entered.
+.RE
+Failure in rolling dice
+.RS 
+Memory could not be allocated while actually rolling the dice.
+.RE
+Unknown option
+.RS
+Take a wild guess ;)
+.RE
+.SH BUGS
+I haven't noticed any yet... 
+.B rolldice
+is a quick hack to provide a virtual dice roller for FRPGs that I play.
+Any improvements are greatly welcome, as I am not the most experienced C
+coder...
+.SH AUTHOR
+Stevie Strickland <sstrickl@ccs.neu.edu>
+.SH VERSION
+1.11 - 01 Feb 2010
