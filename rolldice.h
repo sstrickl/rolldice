@@ -15,6 +15,9 @@
 /* For GNU getopt */
 #include <getopt.h>
 
+/* For GNU readline */
+#include <readline/readline.h>
+
 /* For the time() function */
 #include <time.h>
 

@@ -111,11 +111,56 @@ void print_rolls(int *dice_nums) {
     if(!print_separate) printf("\n");
 }
 
+/* roll_from_stdin() - parse stdin, one roll by line
+ * 
+ * Parameters: None
+ * Returns: EXIT_SUCCESS or EXIT_FAILURE
+ */
+int roll_from_stdin(){
+     int *dice_nums = NULL;
+     static char *line = (char *)NULL;
+
+     line = readline("");
+     while(line){
+       dice_nums = parse_string( line );
+       if ( dice_nums == NULL ) {
+         fprintf(stderr, "%s: Failure in getting dice attributes\n", line);
+         return EXIT_FAILURE;
+       }
+       free(line);
+       print_rolls(dice_nums);
+       free(dice_nums);
+
+       line = (char *)NULL;
+       line = readline("");
+     }
+    return EXIT_SUCCESS;
+}
+
+/* roll_from_args() - parse command line args to roll dices
+ * 
+ * Parameters: args passed to CLI
+ * Returns: EXIT_SUCCESS or EXIT_FAILURE
+ */
+int roll_from_args(char **argv){
+    int *dice_nums = NULL;
+    int index;
+
+    for(index = optind; argv[index] != NULL; index++) {
+      dice_nums = parse_string( argv[index] );
+      if ( dice_nums == NULL ) {
+        fprintf(stderr, "%s: Failure in getting dice attributes\n", argv[0]);
+        return EXIT_FAILURE;
+      }
+     print_rolls(dice_nums);
+     free(dice_nums);
+    }
+    return EXIT_SUCCESS;
+}
+
+
 int main(int argc, char **argv) {
-  
-    int c, index, *totals, *dice_nums;
-    
-    dice_nums = NULL;
+    int c;
 
     while((c = getopt_long(argc, argv, "hvrus", long_opts, NULL)) != -1) {
       switch(c) {
@@ -142,19 +187,10 @@ int main(int argc, char **argv) {
     
     init_random(rand_file);
     
-    if ( argc < 2 ) {
-      print_usage(EXIT_FAILURE);
+    if ( optind == argc ) {
+      return roll_from_stdin();
     }
-
-    for(index = optind; argv[index] != NULL; index++) {
-      dice_nums = parse_string( argv[index] );
-      if ( dice_nums == NULL ) {
-	fprintf(stderr, "%s: Failure in getting dice attributes\n", argv[0]);
-	return EXIT_FAILURE;
-      }
-      print_rolls(dice_nums);
-      free(dice_nums);
+    else {
+      return roll_from_args(argv);
     }
-    
-    return EXIT_SUCCESS;
 }
