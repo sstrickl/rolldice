@@ -7,6 +7,14 @@ one thing, and doing that thing well.  However, this is not a claim that
 rolldice cannot be improved,  only that I am satisfied with it, as of right 
 now... of course, any improvements will be accepted gladly!
 
+
+COMPILING
+
+Compiling rolldice requires the development files of the GNU readline library.
+
+
+HISTORY
+
 1999.1.27
 
 I've had a request to add /dev/(u)random as random number input, and so 

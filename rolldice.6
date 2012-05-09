@@ -8,14 +8,18 @@ rolldice \- rolls virtual dice
 .B rolldice [
 .I options
 .B ]
-.I "dice_string"
-.I "dice_string"
-.I ...
+.I [dice_string
+.I [dice_string
+.I ...]]
 .SH DESCRIPTION
 .B rolldice
 rolls virtual dice.  The dice strings passed on the command line contain
 information on the dice to roll in a format comparable to the format used in
 fantasy role playing games.
+.P
+If no dices are provided in arguments, 
+.B rolldice
+uses stdin as input.
 .SH OPTIONS
 .RS
 .IP -h,--help
