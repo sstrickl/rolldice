@@ -1,4 +1,4 @@
-.\" Man file for rolldice(6) - v1.11 - 01 Feb 2010
+.\" Man file for rolldice(6) - v__VERSION__ - 01 Feb 2010
 .\" (c) Stevie Strickland, 1999-2012
 .\"
 .TH ROLLDICE 6 "01 Feb 2010" Linux
@@ -102,4 +102,4 @@ coder...
 .SH AUTHOR
 Stevie Strickland <sstrickl@ccs.neu.edu>
 .SH VERSION
-1.11 - 01 Feb 2010
+__VERSION__ - 01 Feb 2010
