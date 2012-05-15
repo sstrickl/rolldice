@@ -30,7 +30,7 @@ static int get_random(int sides) {
     unsigned int ret_value;
   
     if(!(fread(&ret_value, sizeof(unsigned int), 1, ran_dev) == 1)) {
-	printf("Error in reading random device!\n");
+	fprintf(stderr, "Error in reading random device!\n");
 	exit(EXIT_FAILURE);
     }
     return (int)(ret_value % sides);
@@ -55,8 +55,10 @@ int rolldie ( int num_sides ) {
 int *parse_string(char *dice_string) {
     int temp_int = -1, *dice_nums;
 
-    if((dice_nums = malloc ( DICE_ARRAY_SIZE * sizeof(int))) == NULL)
-	return NULL;
+    if((dice_nums = malloc ( DICE_ARRAY_SIZE * sizeof(int))) == NULL){
+        perror("rolldice");
+    	return NULL;
+    }
 
     dice_nums[NUM_ROLLS] = 1;
     dice_nums[NUM_DICE] = 1;
