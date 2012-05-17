@@ -21,6 +21,7 @@ int *get_num_rolls(int temp_int, int *res_int);
 int *get_mutiplier(char *dice_string, int temp_int, int *res_int);
 int *get_plus_modifier(char *dice_string, int temp_int, int *res_int);
 int *get_minus_modifier(char *dice_string, int temp_int, int *res_int);
+int is_too_big(int num);
 
 
 void init_random(rand_type rand_file) {
@@ -158,10 +159,14 @@ int *parse_string(char *dice_string) {
 }
 
 int get_num_dice(int temp_int, int default_num){
-    if(temp_int > 0 && temp_int < MAXSHORT)
+    if(temp_int > 0 && (! is_too_big(temp_int)) )
         return temp_int;
     else
         return default_num;
+}
+
+int is_too_big(int num){
+    return num >= MAXSHORT;
 }
 
 int *get_num_sides(char *dice_string, int temp_int, int *res_int){
@@ -172,7 +177,7 @@ int *get_num_sides(char *dice_string, int temp_int, int *res_int){
         return res_int;
     }
     else if( (sscanf(dice_string, "%d", &temp_int) < 1 ) ||
-            (temp_int < 2) || (temp_int >= MAXSHORT) ) {
+            (temp_int < 2) || is_too_big(temp_int) ) {
         return NULL;
     } else {
         res_int = &temp_int;
@@ -182,7 +187,7 @@ int *get_num_sides(char *dice_string, int temp_int, int *res_int){
 
 int *get_num_drop(char *dice_string, int temp_int, int *res_int){
     if( (sscanf(dice_string, "%d", &temp_int) < 1) ||
-        (temp_int < 0) || (temp_int >= MAXSHORT)) {
+        (temp_int < 0) || is_too_big(temp_int) ) {
         return NULL;
     } else {
         res_int = &temp_int;
@@ -191,7 +196,7 @@ int *get_num_drop(char *dice_string, int temp_int, int *res_int){
 }
 
 int *get_num_rolls(int temp_int, int *res_int){
-    if( ( temp_int < 1 ) || (temp_int >= MAXSHORT) ) {
+    if( ( temp_int < 1 ) || is_too_big(temp_int) ) {
         return NULL;
     } else {
         res_int = &temp_int;
@@ -201,7 +206,7 @@ int *get_num_rolls(int temp_int, int *res_int){
 
 int *get_mutiplier(char *dice_string, int temp_int, int *res_int){
     if( (sscanf(dice_string, "%d", &temp_int) < 1) ||
-        (temp_int < 0) || (temp_int >= MAXSHORT)) {
+        (temp_int < 0) || is_too_big(temp_int) ) {
         return NULL;
     } else {
         res_int = &temp_int;
@@ -211,7 +216,7 @@ int *get_mutiplier(char *dice_string, int temp_int, int *res_int){
 
 int *get_plus_modifier(char *dice_string, int temp_int, int *res_int){
     if( (sscanf(dice_string, "%d", &temp_int) < 1) ||
-        (temp_int < 0) || (temp_int >= MAXSHORT)) {
+        (temp_int < 0) || is_too_big(temp_int) ) {
         return NULL;
     } else {
         res_int = &temp_int;
@@ -221,7 +226,7 @@ int *get_plus_modifier(char *dice_string, int temp_int, int *res_int){
 
 int *get_minus_modifier(char *dice_string, int temp_int, int *res_int){
     if( (sscanf(dice_string, "%d", &temp_int) < 1) ||
-        (temp_int < 0) || (temp_int >= MAXSHORT)) {
+        (temp_int < 0) || is_too_big(temp_int) ) {
         return NULL;
     } else {
         res_int = &temp_int;
