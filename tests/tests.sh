@@ -27,6 +27,8 @@ echo "\tUse argv"
 ../rolldice -s -u 1d2
 ../rolldice -s -r 1d2
 ../rolldice 1d2 1d3
+../rolldice 1d%
+../rolldice 1d%+1
 
 echo "\tUse stdin"
 cat rollfile | ../rolldice
