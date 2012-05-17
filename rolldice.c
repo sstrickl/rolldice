@@ -159,10 +159,10 @@ int *parse_string(char *dice_string) {
 }
 
 int get_num_dice(int temp_int, int default_num){
-    if(temp_int > 0 && (! is_too_big(temp_int)) )
-        return temp_int;
-    else
+    if( (temp_int <= 0 ) || is_too_big(temp_int) )
         return default_num;
+    else
+        return temp_int;
 }
 
 int is_too_big(int num){
