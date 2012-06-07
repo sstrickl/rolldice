@@ -66,7 +66,7 @@ void print_rolls(int *dice_nums) {
     if(dice_nums == NULL) {
         fprintf(stderr, "Problems with the dice string, either malformed "
 			"or numbers are too large,\nso quitting!\n");
-	exit(EXIT_FAILURE);
+        exit(EXIT_FAILURE);
     }
     
     if((temp_roll = malloc(sizeof(*temp_roll) * dice_nums[NUM_DICE])) == NULL) {
@@ -122,7 +122,6 @@ int roll_from_stdin(){
      while(line){
        dice_nums = parse_string( line );
        if ( dice_nums == NULL ) {
-         fprintf(stderr, "%s: Failure in getting dice attributes\n", line);
          return EXIT_FAILURE;
        }
        free(line);
@@ -147,7 +146,6 @@ int roll_from_args(char **argv){
     for(index = optind; argv[index] != NULL; index++) {
       dice_nums = parse_string( argv[index] );
       if ( dice_nums == NULL ) {
-        fprintf(stderr, "%s: Failure in getting dice attributes\n", argv[0]);
         return EXIT_FAILURE;
       }
      print_rolls(dice_nums);
