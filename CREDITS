@@ -22,4 +22,6 @@ mhess@email.unc.edu
  - For helping with the changelog entry for v1.2 which is, again, changed :)
 
 Stéphane Blondon <stephane.blondon@gmail.com>
- - For 
+ - For improving error messages, the handling of version numbers and
+   reading dice strings on standard input.
+
