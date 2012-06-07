@@ -83,7 +83,7 @@ void print_rolls(int *dice_nums) {
 	    temp_total += temp_roll[j];
 	}
 	for(j = 0; j < dice_nums[NUM_DROP]; j++) {
-	    temp_int = MAXSHORT;
+	    temp_int = SHRT_MAX;
 	    for(k = 0; k < dice_nums[NUM_DICE]; k++)
 		if(temp_int > temp_roll[k]) {
 		    temp_int = temp_roll[k];
@@ -91,7 +91,7 @@ void print_rolls(int *dice_nums) {
 		}
 	    if(print_separate) printf("- %d ", temp_int);
 	    temp_total -= temp_int;
-	    temp_roll[temp_index] = MAXSHORT;
+	    temp_roll[temp_index] = SHRT_MAX;
 	}
 	if(print_separate) printf(") ");
 	if(dice_nums[MULTIPLIER] != 1) {

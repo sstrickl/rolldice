@@ -167,7 +167,7 @@ int get_num_dice(int temp_int, int default_num){
 }
 
 int is_too_big(int num){
-    return num >= MAXSHORT;
+    return num >= SHRT_MAX;
 }
 
 void print_parse_error(const char * label, const int too_big_error){

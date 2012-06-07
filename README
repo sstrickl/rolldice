@@ -1,6 +1,6 @@
 rolldice is just a simple program that rolls an amount of virtual dice of
 any size.  Well, technically, all the attributes of the dice can't exceed
-MAXSHORT, but I think it suffices for any normal FRPG.
+SHRT_MAX, but I think it suffices for any normal FRPG.
 
 rolldice is a simple program, trying to uphold the UNIX philosophy of doing
 one thing, and doing that thing well.  However, this is not a claim that

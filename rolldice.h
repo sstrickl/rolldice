@@ -28,7 +28,7 @@
 #include <string.h>
 
 /* For some bounds */
-#include <values.h>
+#include <limits.h>
 
 /* The following #defines give the position of each important dice-related
  * number inside of the dice_nums array.  The final #define gives us the
