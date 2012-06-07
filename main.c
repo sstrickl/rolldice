@@ -9,10 +9,8 @@
  */
 
 #include "rolldice.h"
+#include "version.h"
 
-/* The version number :) */
-static const int MAJOR_VERSION = 1;
-static const int MINOR_VERSION = 11;
 
 /* The long options for this program in an struct option array */
 struct option long_opts[] = {{"help", 0, NULL, 'h'},
