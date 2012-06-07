@@ -8,8 +8,8 @@ LIBS = -lm -lreadline
 INCLUDES = rolldice.h
 
 
-MAJOR_VERSION = $(shell grep MAJOR_VERSION version.h | cut --delim " " --field 6 | cut --delim ";" --field 1)
-MINOR_VERSION = $(shell grep MINOR_VERSION version.h | cut --delim " " --field 6 | cut --delim ";" --field 1)
+MAJOR_VERSION = $(shell grep MAJOR_VERSION version.h | cut -d" " -f6 | cut -f1 -d";")
+MINOR_VERSION = $(shell grep MINOR_VERSION version.h | cut -d" " -f6 | cut -d";" -f1)
 VERSION = $(MAJOR_VERSION).$(MINOR_VERSION)
 
 all: rolldice man
