@@ -1,3 +1,9 @@
+v1.12 - 07 June 2012
+  - Stéphane Blondon has done some work in improving error messages, the
+    handling of version numbers, and also reading dice strings on standard
+    input.
+  - A github repository is now available: https://github.com/sstrickl/rolldice
+
 v1.11 - 01 Feb 2010
   - Only updating URLs/email addresses.  No bugfixes in this revision,
     though I'll get around to soon.

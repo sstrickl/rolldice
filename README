@@ -88,3 +88,9 @@ since I left Georgia Tech.
 Cleaning up this README a bit (or destroying history, however you want to
 look at it) to get it ready for posting at Github.  Maybe one day I'll come
 back to it and clean it up as much as it needs, but I'm not optimistic.
+
+2012.6.7
+
+Thanks to Stéphane Blondon, there have been a few improvements in rolldice,
+including the ability to pipe input from standard input.  Thanks for your
+contributions!

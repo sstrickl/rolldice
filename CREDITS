@@ -1,19 +1,25 @@
-John Anderson - For making me write the program in the first place, after I
-                told him I needed a project to work with C, and then
-		complained about there not being any good free dice rolling
-		programs...
+John Anderson
+ - For making me write the program in the first place, after I
+   told him I needed a project to work with C, and then
+   complained about there not being any good free dice rolling
+   programs...
 
-talein@whitestar.soark.net - For helping me see that my limits were wrong,
-                             and that MAXSHORT was the way ;)
+talein@whitestar.soark.net
+ - For helping me see that my limits were wrong,
+   and that MAXSHORT was the way (though now I'm using SHRT_MAX!)
 
-colin@nyx.net - For looking at my code and giving me suggestions for better
-                random number generation (the only suggestion taken, so far,
-		is the addition of /dev/(u)random... watch this space for
-		news! :)
+colin@nyx.net
+ - For looking at my code and giving me suggestions for better
+   random number generation (the only suggestion taken, so far,
+   is the addition of /dev/(u)random... watch this space for
+   news!
 
-Adam Northern - For aiding and abetting with the above "credit", now
-                changed due to a change of heart on part of the
-		upstream programmer (me :)
+Adam Northern
+ - For aiding and abetting with the above "credit", now changed due to a
+   change of heart on part of the upstream programmer (that is, me)
 
-mhess@email.unc.edu - For helping with the changelog entry for v1.2 which
-                      is, again, changed :)
+mhess@email.unc.edu
+ - For helping with the changelog entry for v1.2 which is, again, changed :)
+
+Stéphane Blondon <stephane.blondon@gmail.com>
+ - For 
