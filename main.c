@@ -8,6 +8,9 @@
  * Stevie Strickland - sstrickl@ccs.neu.edu
  */
 
+/* For the abs() function */
+#include <stdlib.h>
+
 #include "rolldice.h"
 #include "version.h"
 
@@ -99,7 +102,13 @@ void print_rolls(int *dice_nums) {
 	    temp_total *= dice_nums[MULTIPLIER];
 	}
 	if(dice_nums[MODIFIER]) {
-	    if(print_separate) printf("+ %d ", dice_nums[MODIFIER]);
+	    if(print_separate){
+            if (dice_nums[MODIFIER] > 0)
+                printf("+ %d ", dice_nums[MODIFIER]);
+            else
+                printf("- %d ", abs(dice_nums[MODIFIER]));
+
+        }
 	    temp_total += dice_nums[MODIFIER];
 	}
 	if(print_separate) printf("= ");

@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 # Released under GPL licence v2 or upper
 #
 # When executed ($ ./tests.sh), no errors should occur in the
@@ -29,7 +29,27 @@
 #rolldice: Requested add modifier is too large
 #rolldice: Requested minus modifier is too large
 
-echo "\tUse argv"
+
+function check_result {
+    RES=`../rolldice $1`
+
+    if echo ${RES} | grep -q $2
+        then
+            echo ${1}": OK"
+        else
+            echo ${1}": ERROR ("${RES}")"
+    fi
+}
+
+
+echo -e "\tResult between right limits"
+check_result "1d2" "^[12]"
+check_result "1d2+1" "^[23]"
+check_result "1d2*2" "^[24]"
+check_result "1d2-1" "^[01]"
+
+
+echo -e "\tUse argv"
 ../rolldice 1d2
 ../rolldice 1d2+1
 ../rolldice -s 1d2
@@ -39,11 +59,11 @@ echo "\tUse argv"
 ../rolldice 1d%
 ../rolldice 1d%+1
 
-echo "\tUse stdin"
+echo -e "\tUse stdin"
 cat rollfile | ../rolldice
 cat rollfile | ../rolldice -s 
 
-echo "\tError messages handle numbers that are too large"
+echo -e "\tError messages handle numbers that are too large"
 ../rolldice 1d123456789
 ../rolldice 2d3s123456789
 ../rolldice 123456789x2d2
