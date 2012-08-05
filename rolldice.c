@@ -246,6 +246,7 @@ int *get_minus_modifier(char *dice_string, int temp_int, int *res_int){
         print_parse_error("minus modifier", is_too_big(temp_int));
         return NULL;
     } else {
+        temp_int = - temp_int;
         res_int = &temp_int;
         return res_int;
     }

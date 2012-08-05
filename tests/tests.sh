@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 # Released under GPL licence v2 or upper
 #
 # When executed ($ ./tests.sh), no errors should occur in the
@@ -28,6 +28,27 @@
 #rolldice: Requested multiplier is too large
 #rolldice: Requested add modifier is too large
 #rolldice: Requested minus modifier is too large
+
+
+function check_result {
+    RES=`../rolldice $1`
+
+    if echo ${RES} | grep -q $2
+        then
+            echo ${1}": OK"
+        else
+            echo ${1}": ERROR ("${RES}")"
+    fi
+}
+
+
+echo "\tResult between right limits"
+check_result "1d2" "^[12]"
+check_result "1d2+1" "^[23]"
+check_result "1d2*2" "^[24]"
+check_result "1d2-1" "^[01]"
+
+exit 
 
 echo "\tUse argv"
 ../rolldice 1d2
