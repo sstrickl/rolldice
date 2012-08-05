@@ -1,7 +1,7 @@
-.\" Man file for rolldice(6) - v__VERSION__ - 01 Feb 2010
+.\" Man file for rolldice(6) - v__VERSION__ - 05 August 2010
 .\" (c) Stevie Strickland, 1999-2012
 .\"
-.TH ROLLDICE 6 "01 Feb 2010" Linux
+.TH ROLLDICE 6 "05 Aug 2010" Linux
 .SH NAME
 rolldice \- rolls virtual dice
 .SH SYNOPSIS

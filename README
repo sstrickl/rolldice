@@ -94,3 +94,8 @@ back to it and clean it up as much as it needs, but I'm not optimistic.
 Thanks to Stéphane Blondon, there have been a few improvements in rolldice,
 including the ability to pipe input from standard input.  Thanks for your
 contributions!
+
+2012.8.5
+
+Stéphane found a regression where subtraction was handled the same as plus,
+so that's fixed in this newest release.
