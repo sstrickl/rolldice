@@ -42,15 +42,14 @@ function check_result {
 }
 
 
-echo "\tResult between right limits"
+echo -e "\tResult between right limits"
 check_result "1d2" "^[12]"
 check_result "1d2+1" "^[23]"
 check_result "1d2*2" "^[24]"
 check_result "1d2-1" "^[01]"
 
-exit 
 
-echo "\tUse argv"
+echo -e "\tUse argv"
 ../rolldice 1d2
 ../rolldice 1d2+1
 ../rolldice -s 1d2
@@ -60,11 +59,11 @@ echo "\tUse argv"
 ../rolldice 1d%
 ../rolldice 1d%+1
 
-echo "\tUse stdin"
+echo -e "\tUse stdin"
 cat rollfile | ../rolldice
 cat rollfile | ../rolldice -s 
 
-echo "\tError messages handle numbers that are too large"
+echo -e "\tError messages handle numbers that are too large"
 ../rolldice 1d123456789
 ../rolldice 2d3s123456789
 ../rolldice 123456789x2d2
