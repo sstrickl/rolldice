@@ -65,18 +65,12 @@ static void print_version() {
 void print_rolls(int *dice_nums) {
     int i, j, k, temp_int, temp_index, temp_total;
     int* temp_roll;
-    
-    if(dice_nums == NULL) {
-        fprintf(stderr, "Problems with the dice string, either malformed "
-			"or numbers are too large,\nso quitting!\n");
-        exit(EX_DATAERR);
-    }
-    
+     
     if((temp_roll = malloc(sizeof(*temp_roll) * dice_nums[NUM_DICE])) == NULL) {
         perror("rolldice");
     	exit(EX_OSERR);
     }
-
+    
     for(i = 0; i < dice_nums[NUM_ROLLS]; i++) {
 	temp_total = 0;
 	if(print_separate) printf("Roll #%d: (", i+1);
