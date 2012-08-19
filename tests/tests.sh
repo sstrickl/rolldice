@@ -31,13 +31,25 @@
 
 
 function check_result {
-    RES=`../rolldice $1`
+    OUTPUT=`../rolldice $1`
+    EXIT_VAL=$?
+    TEST_SUCCESS=true
+    
+    if [[ $EXIT_VAL != 0 ]]
+        then
+            echo ${1}": ERROR (return value)"
+            TEST_SUCCESS=false
+    fi
 
-    if echo ${RES} | grep -q $2
+    if echo ${OUTPUT} | grep -q -v $2
+        then
+            echo ${1}": ERROR ("${OUTPUT}")"
+            TEST_SUCCESS=false
+    fi
+
+    if $TEST_SUCCESS;
         then
             echo ${1}": OK"
-        else
-            echo ${1}": ERROR ("${RES}")"
     fi
 }
 
