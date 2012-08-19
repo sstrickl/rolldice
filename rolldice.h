@@ -18,6 +18,9 @@
 /* For GNU readline */
 #include <readline/readline.h>
 
+/* For exit values */
+#include <sysexits.h>
+
 /* For the time() function */
 #include <time.h>
 

@@ -53,6 +53,17 @@ function check_result {
     fi
 }
 
+function check_error {
+    OUTPUT=`../rolldice $1`
+    EXIT_VAL=$?
+
+    # 65 == EX_DATAERR /* data format error */
+    if [[ $EXIT_VAL != 65 ]] 
+        then
+            echo ${1}": ERROR ("$EXIT_VAL" instead of 65)"
+    fi
+    
+}
 
 echo -e "\tResult between right limits"
 check_result "1d2" "^[12]"
@@ -76,10 +87,10 @@ cat rollfile | ../rolldice
 cat rollfile | ../rolldice -s 
 
 echo -e "\tError messages handle numbers that are too large"
-../rolldice 1d123456789
-../rolldice 2d3s123456789
-../rolldice 123456789x2d2
-../rolldice 2d2*123456789
-../rolldice 2d2+123456789
-../rolldice 2d2-123456789
+check_error "1d123456789"
+check_error "2d3s123456789"
+check_error "123456789x2d2"
+check_error "2d2*123456789"
+check_error "2d2+123456789"
+check_error "2d2-123456789"
 
