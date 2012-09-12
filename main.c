@@ -53,7 +53,7 @@ static void print_usage(int exitval) {
 static void print_version() {
     printf("rolldice, v%d.%d\n", MAJOR_VERSION, MINOR_VERSION);
     printf("Written by Stevie Strickland (sstrickl@ccs.neu.edu)\n");
-    exit(EXIT_SUCCESS);
+    exit(EX_OK);
 }
 
 /* print_rolls() - Prints the rolls, either just the totals or the
@@ -65,18 +65,12 @@ static void print_version() {
 void print_rolls(int *dice_nums) {
     int i, j, k, temp_int, temp_index, temp_total;
     int* temp_roll;
-    
-    if(dice_nums == NULL) {
-        fprintf(stderr, "Problems with the dice string, either malformed "
-			"or numbers are too large,\nso quitting!\n");
-        exit(EXIT_FAILURE);
-    }
-    
+     
     if((temp_roll = malloc(sizeof(*temp_roll) * dice_nums[NUM_DICE])) == NULL) {
         perror("rolldice");
-	exit(EXIT_FAILURE);
+    	exit(EX_OSERR);
     }
-
+    
     for(i = 0; i < dice_nums[NUM_ROLLS]; i++) {
 	temp_total = 0;
 	if(print_separate) printf("Roll #%d: (", i+1);
@@ -121,7 +115,7 @@ void print_rolls(int *dice_nums) {
 /* roll_from_stdin() - parse stdin, one roll by line
  * 
  * Parameters: None
- * Returns: EXIT_SUCCESS or EXIT_FAILURE
+ * Returns: EX_OK or EXIT_DATAERR (if bad stdin)
  */
 int roll_from_stdin(){
      int *dice_nums = NULL;
@@ -131,7 +125,7 @@ int roll_from_stdin(){
      while(line){
        dice_nums = parse_string( line );
        if ( dice_nums == NULL ) {
-         return EXIT_FAILURE;
+         return EX_DATAERR;
        }
        free(line);
        print_rolls(dice_nums);
@@ -140,13 +134,13 @@ int roll_from_stdin(){
        line = (char *)NULL;
        line = readline("");
      }
-    return EXIT_SUCCESS;
+    return EX_OK;
 }
 
 /* roll_from_args() - parse command line args to roll dices
  * 
  * Parameters: args passed to CLI
- * Returns: EXIT_SUCCESS or EXIT_FAILURE
+ * Returns: EX_OK or EXIT_DATAERR (if bad command line)
  */
 int roll_from_args(char **argv){
     int *dice_nums = NULL;
@@ -155,12 +149,12 @@ int roll_from_args(char **argv){
     for(index = optind; argv[index] != NULL; index++) {
       dice_nums = parse_string( argv[index] );
       if ( dice_nums == NULL ) {
-        return EXIT_FAILURE;
+        return EX_DATAERR;
       }
      print_rolls(dice_nums);
      free(dice_nums);
     }
-    return EXIT_SUCCESS;
+    return EX_OK;
 }
 
 
@@ -170,19 +164,19 @@ int main(int argc, char **argv) {
     while((c = getopt_long(argc, argv, "hvrus", long_opts, NULL)) != -1) {
       switch(c) {
       case 'h':
-	print_usage(EXIT_SUCCESS); break;
+	print_usage(EX_OK); break;
       case 'v':
 	print_version(); break;
       case 'r':
 	if(rand_file == URANDOM) {
 	  fprintf(stderr, "Choose either '-r' or '-u', please.\n");
-	  return EXIT_FAILURE;
+	  return EX_USAGE;
 	}
 	rand_file = RANDOM; break;
       case 'u':
 	if(rand_file == RANDOM) {
 	  fprintf(stderr, "Choose either '-r' or '-u', please.\n");
-	  return EXIT_FAILURE;
+	  return EX_USAGE;
 	}
 	rand_file = URANDOM; break;
       case 's':

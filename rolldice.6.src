@@ -79,20 +79,24 @@ that, and repeat the process two more times, for a total of three results.
 .SH DIAGNOSTICS
 The following error messages may appear on STDERR:
 
-Failure in getting dice attributes
-.RS 
-Either memory could not be allocated while parsing the string passed to the
+Requested * is too large
+.RS
+Memory could not be allocated while parsing the string passed to the
 .B rolldice
-program or an invalid dice string was entered.
+program 
 .RE
-Failure in rolling dice
-.RS 
-Memory could not be allocated while actually rolling the dice.
+Problems with the malformed dice string
+.RS
+The dice string doesn't respect a correct syntax (see upper section DICE STRING FORMAT)
 .RE
 Unknown option
 .RS
 Take a wild guess ;)
 .RE
+
+The exit values returned by 
+.B rolldice
+follow the BSD convention.
 .SH BUGS
 I haven't noticed any yet... 
 .B rolldice
