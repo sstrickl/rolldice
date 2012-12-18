@@ -29,12 +29,12 @@ void init_random(rand_type rand_file) {
     if(rand_file == RANDOM) {
 	if((ran_dev = fopen("/dev/random", "r")) == NULL) {
 	    fprintf(stderr, "Error in opening /dev/random!\n");
-	    exit(EXIT_FAILURE);
+	    exit(EX_OSFILE);
 	}
     }
     else if((ran_dev = fopen("/dev/urandom", "r")) == NULL) {
 	fprintf(stderr, "Error in opening /dev/urandom!\n");
-	exit(EXIT_FAILURE);
+	exit(EX_OSFILE);
     }
 }
 
@@ -43,7 +43,7 @@ static int get_random(int sides) {
   
     if(!(fread(&ret_value, sizeof(unsigned int), 1, ran_dev) == 1)) {
 	fprintf(stderr, "Error in reading random device!\n");
-	exit(EXIT_FAILURE);
+	exit(EX_OSFILE);
     }
     return (int)(ret_value % sides);
 }
@@ -70,7 +70,7 @@ int *parse_string(char *dice_string) {
 
     if((dice_nums = malloc ( DICE_ARRAY_SIZE * sizeof(int))) == NULL){
         perror("rolldice");
-    	return NULL;
+        exit(EX_OSERR);
     }
 
     dice_nums[NUM_ROLLS] = 1;
