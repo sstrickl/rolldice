@@ -1,5 +1,5 @@
 /*
- * version.c - 05 August 2012
+ * version.c - 18 December 2012
  *
  * This program has been placed under the GPL.  Any bugfixes or enhancements
  * will be greatly appreciated :)

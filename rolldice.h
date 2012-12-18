@@ -1,5 +1,5 @@
 /*
- * rolldice.h - v1.13 - 05 August 2010
+ * rolldice.h - v1.14 - 18 December 2012
  * (c) Stevie Strickland, 1999-2012
  *
  * This program has been placed under the GPL.  Any bugfixes or enhancements

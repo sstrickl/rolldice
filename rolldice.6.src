@@ -1,7 +1,7 @@
-.\" Man file for rolldice(6) - v__VERSION__ - 05 August 2010
+.\" Man file for rolldice(6) - v__VERSION__ - 18 Dec 2012
 .\" (c) Stevie Strickland, 1999-2012
 .\"
-.TH ROLLDICE 6 "05 Aug 2010" Linux
+.TH ROLLDICE 6 "18 Dec 2012" Linux
 .SH NAME
 rolldice \- rolls virtual dice
 .SH SYNOPSIS
@@ -15,7 +15,7 @@ rolldice \- rolls virtual dice
 .B rolldice
 rolls virtual dice.  The dice strings passed on the command line contain
 information on the dice to roll in a format comparable to the format used in
-fantasy role playing games.
+most role playing games.
 .P
 If no dice strings are provided as command line arguments,
 .B rolldice
@@ -40,36 +40,36 @@ The dice string uses the following format:
 .IP {#x}{#}d[#|%]{*#}{+/-#}{s#}
 .RE
 .P
-The dice string doesn't have to be in the format that I outlined above,
-but this is the nicest order for me.  It will try to parse any different
+The dice string doesn't have to be in the exact format outlined above,
+but this is the order I use.  It will try to parse any different
 string containing the same sections in the best way it can, and will
 throw out anything that isn't one of the sections below.
 .P Now, to break this format down section by section:
 .RS
 .IP {#}d[#|%]
-This is the only required part of the string, and now really isn't even
-required, as it defaults to 1d6 if not found.  The first number is the
+The first number is the
 number of dice to roll, and the second number is the number of sides the
 dice have.  The numbers rolled on each die are then added up and given
 as the result.  Hence 3d6 means "roll three six-sided dice, add them 
 together and return the result".  If the first number is left out, then
 the number of dice defaults to 1.  If the second number is not a number,
-but a percentage sign, then the number of sides becomes 100 (for a
-percentage roll).
+but a percentage sign (%), then the number of sides becomes 100 (for a
+percentage roll).  If this is not included in the dice string, then the
+default is 1d6.
 .IP {#x}
-This number tells how many times to roll.  For example, if you want to roll 3
-6-sided dice 6 times, you would say 6x3d6.  This would return six numbers,
+This number describes how many times to roll.  For example, if you want to roll 3
+6-sided dice 6 times, you use the dice string 6x3d6.  This returns six numbers,
 corresponding to the six different rolls.
 .IP {*#}
-This number tells how many times to multiply the result of each roll.
-3d6*100 would return a number in the range of 300-1800, since 3-18 is the
-range resulting from 3d6, which is then multipled by 100.
+This number describes how many times to multiply the result of each roll.
+3d6*100 returns a number in the range of 300-1800, because 3-18 is the
+range for 3d6 and the result is then multipled by 100.
 .IP {+/-#}
 This number is the modifier to be added or subtracted, depending on the sign,
-from each roll.  1d4+1 would result in a range from 2-5 (1-4 for the die, plus
+from each roll.  1d4+1 results in a range from 2-5 (1-4 for the die, plus
 1).  This step is handled *after* the multiplication modifier.
 .IP {s#}
-This number tells the program to drop the # lowest dice rolls.  This step is
+This number describes how many lowest dice rolls to drop.  This step is
 handled *before* the multiplication modifier.
 .RE
 .P Any combination of the optional parts of the string may be used, but only
@@ -87,23 +87,17 @@ program
 .RE
 Problems with the malformed dice string
 .RS
-The dice string doesn't respect a correct syntax (see upper section DICE STRING FORMAT)
+The dice string contains a syntax error (see upper section DICE STRING FORMAT)
 .RE
 Unknown option
 .RS
-Take a wild guess ;)
+An unknown command-line option was provided
 .RE
 
 The exit values returned by 
 .B rolldice
 follow the BSD convention.
-.SH BUGS
-I haven't noticed any yet... 
-.B rolldice
-is a quick hack to provide a virtual dice roller for FRPGs that I play.
-Any improvements are greatly welcome, as I am not the most experienced C
-coder...
 .SH AUTHOR
 Stevie Strickland <sstrickl@ccs.neu.edu>
 .SH VERSION
-__VERSION__ - 01 Feb 2010
+__VERSION__ - 18 Dec 2012

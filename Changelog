@@ -1,3 +1,7 @@
+v1.14 - 18 December 2012
+  - Stéphane changed the error handling from following stdlib conventions to
+    BSD (sysexits.h) conventions.
+
 v1.13 - 05 August 2012
   - Stéphane found a bug that caused dice strings with subtraction
     (e.g., "1d2-1") to be handled as addition (e.g., like "1d2+1").

@@ -99,3 +99,8 @@ contributions!
 
 Stéphane found a regression where subtraction was handled the same as plus,
 so that's fixed in this newest release.
+
+2012.12.18
+
+Stéphane changed the error handling from following stdlib conventions to
+BSD (sysexits.h) conventions.
