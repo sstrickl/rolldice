@@ -31,7 +31,7 @@ uses /dev/random for random number generating
 .IP -u,--urandom
 uses /dev/urandom for random number generating (default)
 .IP -s,--separate
-prints out the result of each individual die separately, as well as the
+prints out the result of each individual dice separately, as well as the
 operations and totals 
 .RE
 .SH "DICE STRING FORMAT" 
@@ -49,7 +49,7 @@ throw out anything that isn't one of the sections below.
 .IP {#}d[#|%]
 The first number is the
 number of dice to roll, and the second number is the number of sides the
-dice have.  The numbers rolled on each die are then added up and given
+dice have.  The numbers rolled on each dice are then added up and given
 as the result.  Hence 3d6 means "roll three six-sided dice, add them 
 together and return the result".  If the first number is left out, then
 the number of dice defaults to 1.  If the second number is not a number,
@@ -66,7 +66,7 @@ This number describes how many times to multiply the result of each roll.
 range for 3d6 and the result is then multipled by 100.
 .IP {+/-#}
 This number is the modifier to be added or subtracted, depending on the sign,
-from each roll.  1d4+1 results in a range from 2-5 (1-4 for the die, plus
+from each roll.  1d4+1 results in a range from 2-5 (1-4 for the dice, plus
 1).  This step is handled *after* the multiplication modifier.
 .IP {s#}
 This number describes how many lowest dice rolls to drop.  This step is
