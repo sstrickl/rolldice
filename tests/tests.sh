@@ -9,18 +9,18 @@
 #	Use argv
 #2 
 #3 
-#Roll #1: (2 ) = 2 
-#Roll #1: (1 ) = 1 
-#Roll #1: (1 ) = 1 
+#Roll #1: (2) = 2 
+#Roll #1: (1) = 1 
+#Roll #1: (1) = 1 
 #2 
 #2 
 #	Use stdin
 #1 
 #1 
 #4 
-#Roll #1: (1 ) = 1 
-#Roll #1: (1 ) = 1 
-#Roll #1: (2 1 ) + 2 = 5 
+#Roll #1: (1) = 1 
+#Roll #1: (1) = 1 
+#Roll #1: (2 1) + 2 = 5 
 #	Error messages handle numbers that are too large
 #rolldice: Requested number of dice faces is too large
 #rolldice: Requested number of dropped dice is too large
