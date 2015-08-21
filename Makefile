@@ -15,13 +15,13 @@ VERSION = $(MAJOR_VERSION).$(MINOR_VERSION)
 all: rolldice man
 
 rolldice: $(OBJFILES)
-	$(CC) $(OBJFILES) -g -o rolldice $(LIBS)
+	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $(OBJFILES) -g -o rolldice $(LIBS)
 
 main.o: main.c $(INCLUDES)
-	$(CC) -g -c main.c
+	$(CC) $(CPPFLAGS) $(CFLAGS) -g -c main.c
 
 rolldice.o: rolldice.c $(INCLUDES)
-	$(CC) -g -c rolldice.c
+	$(CC) $(CPPFLAGS) $(CFLAGS) -g -c rolldice.c
 
 install: $(EXECFILES)
 	install -d $(BIN) $(MAN)
