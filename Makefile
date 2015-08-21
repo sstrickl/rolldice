@@ -15,18 +15,18 @@ VERSION = $(MAJOR_VERSION).$(MINOR_VERSION)
 all: rolldice man
 
 rolldice: $(OBJFILES)
-	$(CC) $(OBJFILES) -g -o rolldice $(LIBS)
+	$(CC) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) $(OBJFILES) -g -o rolldice $(LIBS)
 
 main.o: main.c $(INCLUDES)
-	$(CC) -g -c main.c
+	$(CC) $(CPPFLAGS) $(CXXFLAGS) -g -c main.c
 
 rolldice.o: rolldice.c $(INCLUDES)
-	$(CC) -g -c rolldice.c
+	$(CC) $(CPPFLAGS) $(CXXFLAGS) -g -c rolldice.c
 
 install: $(EXECFILES)
 	install -d $(BIN) $(MAN)
 	install ./rolldice $(BIN)
-	gzip -9 -c rolldice.6 > rolldice.6.gz
+	gzip -n -9 -c rolldice.6 > rolldice.6.gz
 	install -m644 rolldice.6.gz $(MAN)
 
 man:
