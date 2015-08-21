@@ -26,7 +26,7 @@ rolldice.o: rolldice.c $(INCLUDES)
 install: $(EXECFILES)
 	install -d $(BIN) $(MAN)
 	install ./rolldice $(BIN)
-	gzip -9 -c rolldice.6 > rolldice.6.gz
+	gzip -n -9 -c rolldice.6 > rolldice.6.gz
 	install -m644 rolldice.6.gz $(MAN)
 
 man:
