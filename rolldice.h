@@ -24,9 +24,6 @@
 /* For the time() function */
 #include <time.h>
 
-/* For the rand() and srand() functions */
-#include <math.h>
-
 /* For the strstr() function */
 #include <string.h>
 
