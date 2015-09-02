@@ -15,12 +15,12 @@ static FILE* ran_dev;
 
 // Local functions
 int get_num_dice(int temp_int, int default_num);
-int *get_num_sides(char *dice_string, int temp_int, int *res_int);
-int *get_num_drop(char *dice_string, int temp_int, int *res_int);
-int *get_num_rolls(int temp_int, int *res_int);
-int *get_mutiplier(char *dice_string, int temp_int, int *res_int);
-int *get_plus_modifier(char *dice_string, int temp_int, int *res_int);
-int *get_minus_modifier(char *dice_string, int temp_int, int *res_int);
+int get_num_sides(char *dice_string, int temp_int);
+int get_num_drop(char *dice_string, int temp_int);
+int get_num_rolls(int temp_int);
+int get_mutiplier(char *dice_string, int temp_int);
+int get_plus_modifier(char *dice_string, int temp_int);
+int get_minus_modifier(char *dice_string, int temp_int);
 int is_too_big(int num);
 void print_parse_error(const char * label, const int too_big_error);
 
@@ -64,14 +64,9 @@ int rolldie ( int num_sides ) {
  * Returns: int * - array of nums describing the different aspects of the 
  * dice to be rolled
  */
-int *parse_string(char *dice_string) {
-    int temp_int = -1, *dice_nums, *res_int;
+void parse_string(char *dice_string, int *dice_nums) {
+    int temp_int = -1, res_int;
     const int DEFAULT_NUM_DICE = 1;
-
-    if((dice_nums = malloc ( DICE_ARRAY_SIZE * sizeof(int))) == NULL){
-        perror("rolldice");
-        exit(EX_OSERR);
-    }
 
     dice_nums[NUM_ROLLS] = 1;
     dice_nums[NUM_DICE] = DEFAULT_NUM_DICE;
@@ -90,62 +85,62 @@ int *parse_string(char *dice_string) {
 	    case 'd':
             dice_nums[NUM_DICE] = get_num_dice(temp_int, DEFAULT_NUM_DICE);
             dice_string++;
-            res_int = get_num_sides(dice_string, temp_int, res_int);
-            if (res_int == NULL){
-                free(dice_nums);
-                return NULL;
+            res_int = get_num_sides(dice_string, temp_int);
+            if (!res_int){
+                dice_nums = NULL;
+                return;
             } else {
-                dice_nums[NUM_SIDES] = *res_int;
+                dice_nums[NUM_SIDES] = res_int;
             }
             break;
 	    case 's':
             dice_string++;
-            res_int = get_num_drop(dice_string, temp_int, res_int);
-            if (res_int == NULL){
-		        free(dice_nums);
-                return NULL;
+            res_int = get_num_drop(dice_string, temp_int);
+            if (!res_int){
+                dice_nums = NULL;
+                return;
             } else {
-                dice_nums[NUM_DROP] = *res_int;
+                dice_nums[NUM_DROP] = res_int;
             }
 		    break;
 	    case 'x':
             dice_string++;
-            res_int = get_num_rolls(temp_int, res_int);
-            if (res_int == NULL){
-                free(dice_nums);
-                return NULL;
+            res_int = get_num_rolls(temp_int);
+            if (!res_int){
+                dice_nums = NULL;
+                return;
             } else {
-                dice_nums[NUM_ROLLS] = *res_int;
+                dice_nums[NUM_ROLLS] = res_int;
             }
             break;
 	    case '*':
             dice_string++;
-            res_int = get_mutiplier(dice_string, temp_int, res_int);
-            if (res_int == NULL){
-                free(dice_nums);
-                return NULL;
+            res_int = get_mutiplier(dice_string, temp_int);
+            if (!res_int){
+                dice_nums = NULL;
+                return;
             } else {
-                dice_nums[MULTIPLIER] = *res_int;
+                dice_nums[MULTIPLIER] = res_int;
             }
             break;
 	    case '+':
             dice_string++;
-            res_int = get_plus_modifier(dice_string, temp_int, res_int);
-            if (res_int == NULL){
-                free(dice_nums);
-                return NULL;
+            res_int = get_plus_modifier(dice_string, temp_int);
+            if (!res_int){
+                dice_nums = NULL;
+                return;
             } else {
-                dice_nums[MODIFIER] = *res_int;
+                dice_nums[MODIFIER] = res_int;
             }
             break;
 	    case '-':
             dice_string++;
-            res_int = get_minus_modifier(dice_string, temp_int, res_int);
-            if (res_int == NULL){
-                free(dice_nums);
-                return NULL;
+            res_int = get_minus_modifier(dice_string, temp_int);
+            if (!res_int){
+                dice_nums = NULL;
+                return;
             } else {
-                dice_nums[MODIFIER] = *res_int;
+                dice_nums[MODIFIER] = res_int;
             }
             break;
         default:
@@ -155,8 +150,6 @@ int *parse_string(char *dice_string) {
 	    temp_int = 0;
 	}
     }
-    
-    return dice_nums;
 }
 
 int get_num_dice(int temp_int, int default_num){
@@ -180,75 +173,68 @@ void print_parse_error(const char * label, const int too_big_error){
 
 }
 
-int *get_num_sides(char *dice_string, int temp_int, int *res_int){
+int get_num_sides(char *dice_string, int temp_int){
     const char *PERCENT = "%";
     if(strncmp(dice_string, PERCENT, 1) == 0){
         temp_int = 100;
-        res_int = &temp_int;
-        return res_int;
+        return temp_int;
     }
     else if( (sscanf(dice_string, "%d", &temp_int) < 1 ) ||
             (temp_int < 2) || is_too_big(temp_int) ) {
         print_parse_error("number of dice faces", is_too_big(temp_int));
-        return NULL;
+        return 0;
     } else {
-        res_int = &temp_int;
-        return res_int;
+        return temp_int;
     }
 }
 
-int *get_num_drop(char *dice_string, int temp_int, int *res_int){
+int get_num_drop(char *dice_string, int temp_int){
     if( (sscanf(dice_string, "%d", &temp_int) < 1) ||
         (temp_int < 0) || is_too_big(temp_int) ) {
         print_parse_error("number of dropped dice", is_too_big(temp_int));
-        return NULL;
+        return 0;
     } else {
-        res_int = &temp_int;
-        return res_int;
+        return temp_int;
     }
 }
 
-int *get_num_rolls(int temp_int, int *res_int){
+int get_num_rolls(int temp_int){
     if( ( temp_int < 1 ) || is_too_big(temp_int) ) {
         print_parse_error("number of rolled dice", is_too_big(temp_int));
-        return NULL;
+        return 0;
     } else {
-        res_int = &temp_int;
-        return res_int;
+        return temp_int;
     }
 }
 
-int *get_mutiplier(char *dice_string, int temp_int, int *res_int){
+int get_mutiplier(char *dice_string, int temp_int){
     if( (sscanf(dice_string, "%d", &temp_int) < 1) ||
         (temp_int < 0) || is_too_big(temp_int) ) {
         print_parse_error("multiplier", is_too_big(temp_int));
-        return NULL;
+        return 0;
     } else {
-        res_int = &temp_int;
-        return res_int;
+        return temp_int;
     }
 }
 
-int *get_plus_modifier(char *dice_string, int temp_int, int *res_int){
+int get_plus_modifier(char *dice_string, int temp_int){
     if( (sscanf(dice_string, "%d", &temp_int) < 1) ||
         (temp_int < 0) || is_too_big(temp_int) ) {
         print_parse_error("add modifier", is_too_big(temp_int));
-        return NULL;
+        return 0;
     } else {
-        res_int = &temp_int;
-        return res_int;
+        return temp_int;
     }
 }
 
-int *get_minus_modifier(char *dice_string, int temp_int, int *res_int){
+int get_minus_modifier(char *dice_string, int temp_int){
     if( (sscanf(dice_string, "%d", &temp_int) < 1) ||
         (temp_int < 0) || is_too_big(temp_int) ) {
         print_parse_error("minus modifier", is_too_big(temp_int));
-        return NULL;
+        return 0;
     } else {
         temp_int = - temp_int;
-        res_int = &temp_int;
-        return res_int;
+        return temp_int;
     }
 }
 
