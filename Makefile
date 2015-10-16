@@ -4,7 +4,7 @@ BIN = $(DESTDIR)/usr/games
 MAN = $(DESTDIR)/usr/share/man/man6
 CC ?= gcc
 OBJFILES = main.o rolldice.o
-LIBS = -lm -lreadline
+LIBS = -lreadline
 INCLUDES = rolldice.h
 
 
