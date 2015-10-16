@@ -76,7 +76,7 @@ void print_rolls(int *dice_nums) {
 	if(print_separate) printf("Roll #%d: (", i+1);
 	for(j = 0; j < dice_nums[NUM_DICE]; j++) {
 	    temp_roll[j] = rolldie(dice_nums[NUM_SIDES]);
-	    if(print_separate) printf("%d ", temp_roll[j]);
+	    if(print_separate) printf("%d%s", temp_roll[j], (j < dice_nums[NUM_DICE] - 1) ? " " : "");
 	    temp_total += temp_roll[j];
 	}
 	for(j = 0; j < dice_nums[NUM_DROP]; j++) {
