@@ -52,7 +52,7 @@ static void print_usage(int exitval) {
  */
 static void print_version() {
     printf("rolldice, v%d.%d\n", MAJOR_VERSION, MINOR_VERSION);
-    printf("Written by Stevie Strickland (sstrickl@ccs.neu.edu)\n");
+    printf("Written by Stevie Strickland (sstrickl@gmail.com)\n");
     exit(EX_OK);
 }
 

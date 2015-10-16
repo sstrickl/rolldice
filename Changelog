@@ -1,3 +1,7 @@
+v1.15 - 16 October 2015
+  - Merging in pull requests from Github by Thomas Ross and Shea Polansky
+    to fix formatting and various issues in the build process/program.
+
 v1.14 - 18 December 2012
   - Stéphane changed the error handling from following stdlib conventions to
     BSD (sysexits.h) conventions.
