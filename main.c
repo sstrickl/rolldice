@@ -118,7 +118,7 @@ void print_rolls(int *dice_nums) {
  * Returns: EX_OK or EXIT_DATAERR (if bad stdin)
  */
 int roll_from_stdin(){
-     int dice_nums[DICE_ARRAY_SIZE];
+     int dice_nums[DICE_ARRAY_SIZE] = {};
      static char *line = (char *)NULL;
 
      line = readline("");
@@ -142,7 +142,7 @@ int roll_from_stdin(){
  * Returns: EX_OK or EXIT_DATAERR (if bad command line)
  */
 int roll_from_args(char **argv){
-    int dice_nums[DICE_ARRAY_SIZE];
+    int dice_nums[DICE_ARRAY_SIZE] = {};
     int index;
 
     for(index = optind; argv[index] != NULL; index++) {

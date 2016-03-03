@@ -68,13 +68,19 @@ void parse_string(char *dice_string, int *dice_nums) {
     int temp_int = -1, res_int;
     const int DEFAULT_NUM_DICE = 1;
 
-    dice_nums[NUM_ROLLS] = 1;
-    dice_nums[NUM_DICE] = DEFAULT_NUM_DICE;
-    dice_nums[NUM_SIDES] = 6;
-    dice_nums[MULTIPLIER] = 1;
-    dice_nums[MODIFIER] = 0;
-    dice_nums[NUM_DROP] = 0;
-
+    if (*dice_string == '\0' && dice_nums[NUM_INITIALIZED]) {
+        return;
+    }
+    else {
+        dice_nums[NUM_ROLLS] = 1;
+        dice_nums[NUM_DICE] = DEFAULT_NUM_DICE;
+        dice_nums[NUM_SIDES] = 6;
+        dice_nums[MULTIPLIER] = 1;
+        dice_nums[MODIFIER] = 0;
+        dice_nums[NUM_DROP] = 0;
+        dice_nums[NUM_INITIALIZED] = 1;
+    }
+    
     while(*dice_string != '\0') {
 	if( isdigit(*dice_string) ) {
 	    sscanf(dice_string, "%d", &temp_int);

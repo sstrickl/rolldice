@@ -41,7 +41,8 @@
 #define MULTIPLIER 3
 #define MODIFIER 4
 #define NUM_DROP 5
-#define DICE_ARRAY_SIZE 6
+#define NUM_INITIALIZED 6
+#define DICE_ARRAY_SIZE 7
 
 /* The following #defines give the tokens for each part of the format
  * string.  Perhaps eventually I'll change parse_string to use strtok()
