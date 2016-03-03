@@ -20,7 +20,8 @@ struct option long_opts[] = {{"help", 0, NULL, 'h'},
 			     {"version", 0, NULL, 'v'},
 			     {"random", 0, NULL, 'r'},
 			     {"urandom", 0, NULL, 'u'},
-			     {"separate", 0, NULL, 's'}};
+                 {"separate", 0, NULL, 's'},
+                 {"interactive", 0, NULL, 'i'}};
 
 /* For getopt usage */
 extern int optind;
@@ -112,6 +113,27 @@ void print_rolls(int *dice_nums) {
     if(!print_separate) printf("\n");
 }
 
+/* roll_from_interactive() - parse stdin, one roll by line, don't exit on errors
+ *
+ * Parameters: None
+ * Returns: None
+ */
+void roll_from_interactive(){
+     int dice_nums[DICE_ARRAY_SIZE] = {};
+     static char *line = (char *)NULL;
+
+     line = readline("");
+     while(line){
+       parse_string( line, dice_nums );
+
+       free(line);
+       print_rolls(dice_nums);
+
+       line = (char *)NULL;
+       line = readline("");
+     }
+}
+
 /* roll_from_stdin() - parse stdin, one roll by line
  * 
  * Parameters: None
@@ -123,8 +145,8 @@ int roll_from_stdin(){
 
      line = readline("");
      while(line){
-       parse_string( line, dice_nums );
-       if ( dice_nums == NULL ) {
+       int res_int = parse_string( line, dice_nums );
+       if ( res_int ) {
          return EX_DATAERR;
        }
        free(line);
@@ -146,8 +168,8 @@ int roll_from_args(char **argv){
     int index;
 
     for(index = optind; argv[index] != NULL; index++) {
-      parse_string( argv[index], dice_nums );
-      if ( dice_nums == NULL ) {
+      int res_int = parse_string( argv[index], dice_nums );
+      if ( res_int ) {
         return EX_DATAERR;
       }
      print_rolls(dice_nums);
@@ -158,8 +180,9 @@ int roll_from_args(char **argv){
 
 int main(int argc, char **argv) {
     int c;
+    int interactive = 0;
 
-    while((c = getopt_long(argc, argv, "hvrus", long_opts, NULL)) != -1) {
+    while((c = getopt_long(argc, argv, "hvrusi", long_opts, NULL)) != -1) {
       switch(c) {
       case 'h':
 	print_usage(EX_OK); break;
@@ -179,12 +202,18 @@ int main(int argc, char **argv) {
 	rand_file = URANDOM; break;
       case 's':
 	print_separate = 1; break;
+      case 'i':
+    interactive = 1;
       }
     }
     
     init_random(rand_file);
-    
-    if ( optind == argc ) {
+
+    if (interactive) {
+      roll_from_interactive();
+      return EX_OK;
+    }
+    else if ( optind == argc ) {
       return roll_from_stdin();
     }
     else {

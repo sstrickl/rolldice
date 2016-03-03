@@ -61,15 +61,16 @@ int rolldie ( int num_sides ) {
 /* parse_string() - Parses a string for dice rolling attributes
  *
  * Parameters: char *dice_string - string to parse
- * Returns: int * - array of nums describing the different aspects of the 
- * dice to be rolled
+ *             int *dice_nums - array of size DICE_ARRAY_SIZE
+ *                       where the parsed values will be stored
+ * Returns: int - return non-zero value if error occured
  */
-void parse_string(char *dice_string, int *dice_nums) {
+int parse_string(char *dice_string, int *dice_nums) {
     int temp_int = -1, res_int;
     const int DEFAULT_NUM_DICE = 1;
 
     if (*dice_string == '\0' && dice_nums[NUM_INITIALIZED]) {
-        return;
+        return 0;
     }
     else {
         dice_nums[NUM_ROLLS] = 1;
@@ -93,8 +94,7 @@ void parse_string(char *dice_string, int *dice_nums) {
             dice_string++;
             res_int = get_num_sides(dice_string, temp_int);
             if (!res_int){
-                dice_nums = NULL;
-                return;
+                return 1;
             } else {
                 dice_nums[NUM_SIDES] = res_int;
             }
@@ -103,8 +103,7 @@ void parse_string(char *dice_string, int *dice_nums) {
             dice_string++;
             res_int = get_num_drop(dice_string, temp_int);
             if (!res_int){
-                dice_nums = NULL;
-                return;
+                return 1;
             } else {
                 dice_nums[NUM_DROP] = res_int;
             }
@@ -113,8 +112,7 @@ void parse_string(char *dice_string, int *dice_nums) {
             dice_string++;
             res_int = get_num_rolls(temp_int);
             if (!res_int){
-                dice_nums = NULL;
-                return;
+                return 1;
             } else {
                 dice_nums[NUM_ROLLS] = res_int;
             }
@@ -123,8 +121,7 @@ void parse_string(char *dice_string, int *dice_nums) {
             dice_string++;
             res_int = get_mutiplier(dice_string, temp_int);
             if (!res_int){
-                dice_nums = NULL;
-                return;
+                return 1;
             } else {
                 dice_nums[MULTIPLIER] = res_int;
             }
@@ -133,8 +130,7 @@ void parse_string(char *dice_string, int *dice_nums) {
             dice_string++;
             res_int = get_plus_modifier(dice_string, temp_int);
             if (!res_int){
-                dice_nums = NULL;
-                return;
+                return 1;
             } else {
                 dice_nums[MODIFIER] = res_int;
             }
@@ -143,8 +139,7 @@ void parse_string(char *dice_string, int *dice_nums) {
             dice_string++;
             res_int = get_minus_modifier(dice_string, temp_int);
             if (!res_int){
-                dice_nums = NULL;
-                return;
+                return 1;
             } else {
                 dice_nums[MODIFIER] = res_int;
             }
@@ -156,6 +151,7 @@ void parse_string(char *dice_string, int *dice_nums) {
 	    temp_int = 0;
 	}
     }
+    return 0;
 }
 
 int get_num_dice(int temp_int, int default_num){
