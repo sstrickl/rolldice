@@ -170,7 +170,7 @@ void print_parse_error(const char * label, const int too_big_error){
         fprintf(stderr, "rolldice: Requested %s is too large\n", label);
     }
     else{
-        fprintf(stderr, "rolldice: Problems with the malformed dice string (in %s), so quitting!\n", label);
+        fprintf(stderr, "rolldice: Problems with the malformed dice string (in %s)\n", label);
     }
 
 }
