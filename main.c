@@ -113,6 +113,8 @@ void print_rolls(int *dice_nums) {
     if(!print_separate) printf("\n");
 }
 
+#define DICE_PROMPT "> "
+
 /* roll_from_interactive() - parse stdin, one roll by line, don't exit on errors
  *
  * Parameters: None
@@ -122,7 +124,7 @@ void roll_from_interactive(){
      int dice_nums[DICE_ARRAY_SIZE] = {};
      static char *line = (char *)NULL;
 
-     line = readline("");
+     line = readline(DICE_PROMPT);
      while(line){
        parse_string( line, dice_nums );
 
@@ -130,7 +132,7 @@ void roll_from_interactive(){
        print_rolls(dice_nums);
 
        line = (char *)NULL;
-       line = readline("");
+       line = readline(DICE_PROMPT);
      }
 }
 
