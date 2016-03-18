@@ -205,7 +205,7 @@ int main(int argc, char **argv) {
       case 's':
 	print_separate = 1; break;
       case 'i':
-        interactive = 1;
+        interactive = 1; break;
       }
     }
     
