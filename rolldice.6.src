@@ -33,6 +33,10 @@ uses /dev/urandom for random number generating (default)
 .IP -s,--separate
 prints out the result of each individual die separately, as well as the
 operations and totals 
+.IP -i,--interactive
+prompts the user to input dice strings. Differs from normal stdin input in
+that errors do not cause the program to immediately exit, but rather return
+to the prompt.
 .RE
 .SH "DICE STRING FORMAT" 
 The dice string uses the following format:
