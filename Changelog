@@ -1,3 +1,6 @@
+v1.16 - 1 October 2016
+  - Addresses https://github.com/sstrickl/rolldice/issues/10.
+
 v1.15 - 16 October 2015
   - Merging in pull requests from Github by Thomas Ross and Shea Polansky
     to fix formatting and various issues in the build process/program.

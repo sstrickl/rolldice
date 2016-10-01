@@ -21,7 +21,8 @@ struct option long_opts[] = {{"help", 0, NULL, 'h'},
 			     {"random", 0, NULL, 'r'},
 			     {"urandom", 0, NULL, 'u'},
                  {"separate", 0, NULL, 's'},
-                 {"interactive", 0, NULL, 'i'}};
+                 {"interactive", 0, NULL, 'i'},
+                 {NULL, 0, NULL, 0}};
 
 /* For getopt usage */
 extern int optind;
