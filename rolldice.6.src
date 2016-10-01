@@ -67,7 +67,7 @@ corresponding to the six different rolls.
 .IP {*#}
 This number describes how many times to multiply the result of each roll.
 3d6*100 returns a number in the range of 300-1800, because 3-18 is the
-range for 3d6 and the result is then multipled by 100.
+range for 3d6 and the result is then multiplied by 100.
 .IP {+/-#}
 This number is the modifier to be added or subtracted, depending on the sign,
 from each roll.  1d4+1 results in a range from 2-5 (1-4 for the die, plus
