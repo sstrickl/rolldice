@@ -63,7 +63,7 @@ int rolldie ( int num_sides ) {
  * Parameters: char *dice_string - string to parse
  *             int *dice_nums - array of size DICE_ARRAY_SIZE
  *                       where the parsed values will be stored
- * Returns: int - return non-zero value if error occured
+ * Returns: int - return non-zero value if error occurred
  */
 int parse_string(char *dice_string, int *dice_nums) {
     int temp_int = -1, res_int;
