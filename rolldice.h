@@ -30,6 +30,9 @@
 /* For some bounds */
 #include <limits.h>
 
+/* For the isdigit() function */
+#include <ctype.h>
+
 /* The following #defines give the position of each important dice-related
  * number inside of the dice_nums array.  The final #define gives us the
  * size of the dice_nums array, which should be the number of other 
